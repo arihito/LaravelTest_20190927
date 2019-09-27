@@ -11,7 +11,7 @@
         @include('common.errors')
         
         <!-- 本登録フォーム -->
-        <form action="" method="POST" class="form-horizontal">
+        <form action="{{ url('books') }}" method="POST" class="form-horizontal">
             
             <!-- CSRFセキュリティ対策 -->
             {{ csrf_field() }}
