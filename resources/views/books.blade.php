@@ -25,7 +25,7 @@
                     <input type="text" name="item_name" class="form-control">
                 </div>
             </div>
-            <!-- 本のタイトル -->
+            <!-- 本の冊数 -->
             <div class="form-group col-6">
                 <div class="input-group mb-2">
                     <div class="input-group-prepend">
@@ -94,6 +94,16 @@
                                     <!-- 本公開日時 -->
                                     <td class="table-text">
                                         <div>{{ $book->published }}</div>
+                                    </td>
+                                    <!-- 本の更新ボタン -->
+                                    <td>
+                                        <form action="{{ url('booksedit/' . $book->id) }}" method="POST">
+                                            {{ csrf_field() }}
+                                            
+                                            <button type="submit" class="btn btn-primary">
+                                                <i class="fa fa-trash"></i> 更新
+                                            </button>
+                                        </form>
                                     </td>
                                     <!-- 本の削除ボタン -->
                                     <td>
