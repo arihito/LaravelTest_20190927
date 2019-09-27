@@ -16,7 +16,10 @@ use App\Book;
 
 
 Route::get('/', function () {
-    return view('books');
+    $books = Book::orderBy('created_at','asc')->get();
+    return view('books',[
+        'books' => $books    
+    ]);
 });
 
 Route::post('/books', function(Request $request) {
@@ -45,5 +48,6 @@ Route::post('/books', function(Request $request) {
 });
 
 Route::delete('/book/{book}', function (Book $book) {
-    
+    $book -> delete();
+    return redirect('/');
 });

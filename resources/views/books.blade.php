@@ -31,5 +31,45 @@
                 </div>
             </div>
         </form>
+        
+        <!-- 現在の本 -->
+        @if (count($books) > 0)
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    現在の本
+                </div>
+                <div class="panel-body">
+                    <table class="table table-striped task-table">
+                        <thead>
+                            <th>本一覧</th>
+                            <th>&nbsp;</th>
+                        </thead>
+                        <tbody>
+                            @foreach ($books as $book)
+                                <tr>
+                                    <!-- 本タイトル -->
+                                    <td class="table-text">
+                                        <div>{{ $book->item_name }}</div>
+                                    </td>
+                                    
+                                    <!-- 本の削除ボタン -->
+                                    <td>
+                                        <form action="{{ url('book/' . $book->id) }}" method="POST">
+                                            {{ csrf_field() }}
+                                            <!-- HTTP Methodを擬似的に変更 -->
+                                            {{ method_field('DELETE') }}
+                                            
+                                            <button type="submit" class="btn btn-danger">
+                                                <i class="fa fa-trash"></i> 削除
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        @endif
     </div>
 @endsection
