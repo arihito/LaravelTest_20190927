@@ -12,5 +12,13 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('books');
+});
+
+Route::post('/books', function() {
+    
+});
+
+Route::delete('/book/{book}', function (Book $book) {
+    
 });
