@@ -56,8 +56,8 @@
                         <input type="date" name="published" value="{{ date('Y-m-d',strtotime($book->published)) }}" class="form-control">
                     </div>
                 </div>
-            
-                <!-- 戻ると登録ボタン -->
+                
+                <!-- 送信と戻るボタン -->
                 <div class="form-group col-9">
                     <button type="submit" class="btn btn-primary btn-lg btn-block">
                         <i class="fa fa-plus"></i> 送信
