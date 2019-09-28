@@ -3,16 +3,27 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Book;
 use Validator;
 
 class BooksController extends Controller
 {
-    public function index (Request $request)
+    // public function __construct()
+    // {
+    //     $this->middleware('auth:api');
+    // }
+
+    public function index ()
     {
-        $books = Book::orderBy('created_at','asc')->get();
+        $books = Book::where('user_id', 
+            Auth::user()->id)
+            ->orderBy('created_at','asc')
+            ->paginate(3);
+        $auths = AUTH::user();
         return view('books',[
-            'books' => $books    
+            'books' => $books,
+            'auths' => $auths
         ]);
     }
 
@@ -35,6 +46,7 @@ class BooksController extends Controller
         
         // Eloquentモデル
         $books = new Book;
+        $books -> user_id     = Auth::user() -> id;
         $books -> item_name   = $request -> item_name;
         $books -> item_number = $request -> item_number;
         $books -> item_amount = $request -> item_amount;
@@ -44,9 +56,10 @@ class BooksController extends Controller
         return redirect('/');
     }
 
-    public function edit (Book $books)
+    public function edit ($book_id)
     {
-       return view('booksedit',['book' => $books]); 
+        $books = Book::where('user_id', Auth::user()->id)->find($book_id);
+        return view('booksedit',['book' => $books]); 
     }
 
     public function update (Request $request)
@@ -68,7 +81,7 @@ class BooksController extends Controller
         }
         
         // Eloquentモデル
-        $books = Book::find($request -> id);
+        $books = Book::where('user_id', Auth::user()->id)->find($request -> id);
         $books -> item_name   = $request -> item_name;
         $books -> item_number = $request -> item_number;
         $books -> item_amount = $request -> item_amount;

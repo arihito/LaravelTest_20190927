@@ -74,6 +74,7 @@
                             <th>冊数</th>
                             <th>金額</th>
                             <th>本の公開日時</th>
+                            <th>更新</th>
                             <th>削除</th>
                         </thead>
                         <tbody>
@@ -120,7 +121,23 @@
                                 </tr>
                             @endforeach
                         </tbody>
+                        <tfooter>
+                            <tr>
+                                <td colspan="6" class="bg-light">
+                                    {{ $books -> links() }}
+                                </td>
+                            </tr>
+                        </tfooter>
                     </table>
+                </div>
+            </div>
+        @else
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="display-4 card-title text-center">現在の本</h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-center" style="letter-spacing:8px">あなたが選んだ本を登録してください</p>
                 </div>
             </div>
         @endif
