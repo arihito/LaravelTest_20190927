@@ -9,10 +9,10 @@ use Validator;
 
 class BooksController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('auth:api');
-    // }
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function index ()
     {
@@ -54,6 +54,7 @@ class BooksController extends Controller
         $books -> save();
         // ルートにリダイレクト
         return redirect('/');
+
     }
 
     public function edit ($book_id)
@@ -89,6 +90,7 @@ class BooksController extends Controller
         $books -> save();
         // ルートにリダイレクト
         return redirect('/');
+
     }
     
     public function destroy (Book $book) 

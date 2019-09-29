@@ -60,7 +60,7 @@
                 </button>
             </div>
         </form>
-        
+
         <!-- 現在の本 -->
         @if (count($books) > 0)
             <div class="card">
